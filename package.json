@@ -9,12 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.2",
+    "@mui/styles": "^5.6.2",
+    "@sanity/core": "^2.13.1",
+    "@sanity/image-url": "^1.0.1",
+    "js-cookie": "^3.0.1",
     "next": "12.1.5",
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "prestart": "npm-link-shared ./node_modules/<other package>/node_modules . react",
+    "react": "^17.0.0, path.resolve('./node_modules/react')",
+    "react-dom": "^17.0.0",
+    "sanity": "^2.29.3"
   },
   "devDependencies": {
     "eslint": "8.14.0",
-    "eslint-config-next": "12.1.5"
+    "eslint-config-next": "12.1.5",
+    "web-vitals": "^2.1.4"
   }
 }

@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "project": {
+    "name": "e-commerce"
+  },
+  "api": {
+    "projectId": "3mwh3zg4",
+    "dataset": "product"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "@sanity/vision"
+      ]
+    }
+  },
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema"
+    }
+  ]
+}
