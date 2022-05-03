@@ -33,7 +33,7 @@ export default function ProductItem({ product, addToCartHandler }) {
         <Button
           size="small"
           color="primary"
-        //   onClick={() => addToCartHandler(product)}
+          onClick={() => addToCartHandler(product)}
         >
           Add to cart
         </Button>

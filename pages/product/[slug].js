@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState  } from 'react'
 import {
     Alert,
     Box,
@@ -14,15 +14,26 @@ import {
   } from '@mui/material';
   import Image from 'next/image';
   import NextLink from 'next/link';
-  import { useEffect, useState } from 'react';
   import Layout from '../../components/Layout';
   import classes from '../../utils/classes';
   import client from '../../utils/client';
-  import { urlFor } from '../../utils/image';
+
+  import { urlFor, urlForThumbnail } from '../../utils/image';
+  import axios from 'axios';
+  import { Store } from '../../utils/Store';
+  import { useSnackbar } from 'notistack';
+  import { useRouter } from 'next/router';
+
 
 export default function ProductScreen(props) {
+    const router = useRouter();
     const { slug } = props;
-
+    const {
+      state: { cart },
+      dispatch,
+    } = useContext(Store);
+    console.log("cartstate", cart)
+      const { enqueueSnackbar } = useSnackbar();
     const [state, setState] = useState({
         product: null,
         loading: true,
@@ -30,8 +41,7 @@ export default function ProductScreen(props) {
       });
 
       const { product, loading, error } = state;
-
-     
+   
      const fetchData = async () => {
           try {
             const product = await client.fetch(
@@ -43,11 +53,43 @@ export default function ProductScreen(props) {
           } catch (err) {
             setState({ ...state, error: err.message, loading: false });
           }
-        };
+        };  
         
         useEffect(() => {
         fetchData();
-         }, []);
+      }, []);
+
+         const addToCartHandler = async () => {
+          const existItem = cart.cartItems.find((x) => x._id === product._id);
+          const quantity = existItem ? existItem.quantity + 1 : 1;
+          const  data  = await 
+          axios.get(`/api/products/${product._id}`).catch((error) => {
+            console.log("Erorr",error);
+          });
+          console.log(data);
+          if (product.countInStock < quantity) {
+            enqueueSnackbar('Sorry. Product is out of stock', { variant: 'error' });
+            return;
+          }
+          dispatch({
+            type: 'CART_ADD_ITEM',
+            payload: {
+              _key: product._id,
+              name: product.name,
+              countInStock: product.countInStock,
+              slug: product.slug.current,
+              price: product.price,
+              image: urlForThumbnail(product.image),
+              quantity,
+            },
+          });
+          enqueueSnackbar(`${product.name} added to the cart`, {
+            variant: 'success',
+          });
+          router.push('/cart');
+        };
+        console.log("cartItem Product: ", product);
+        console.log("carts: ", cart)
 
     return (
       <Layout title={product?.title}>
@@ -74,7 +116,7 @@ export default function ProductScreen(props) {
                 height={640}
               />
             </Grid>
-            <Grid md={3} xs={12}>
+            <Grid item md={3} xs={12}>
               <List>
                 <ListItem>
                   <Typography component="h5" variant="h5">
@@ -122,7 +164,10 @@ export default function ProductScreen(props) {
                     </Grid>
                   </ListItem>
                   <ListItem>
-                    <Button fullWidth variant="contained">
+                    <Button 
+                    onClick={addToCartHandler}
+                    fullWidth
+                    variant="contained">
                       Add to cart
                     </Button>
                   </ListItem>
@@ -142,4 +187,3 @@ export function getServerSideProps(context) {
       props: { slug: context.params.slug },
     };
   }
-  

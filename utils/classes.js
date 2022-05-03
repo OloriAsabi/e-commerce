@@ -28,6 +28,11 @@ const classes = {
       fontWeight: 'bold',
       fontSize: '1.5rem',
     },
+    navbarButton: {
+      color: '#fffff',
+      textTransform: 'initial',
+    },
+
   };
   
   export default classes;

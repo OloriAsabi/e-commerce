@@ -1,5 +1,4 @@
 import sanityClient from '@sanity/client';
-import config from './config';
 
 const client = sanityClient({
   projectId: '3mwh3zg4',
