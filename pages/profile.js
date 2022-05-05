@@ -45,7 +45,7 @@ function ProfileScreen() {
           email,
           password,
         },
-        { headers: { authorization: `Bearer ${userInfo.token}` } }
+        { headers: { authorization: `Bearer ${userInfo.data.token}` } }
       );
       dispatch({ type: 'USER_LOGIN', payload: data });
       jsCookie.set('userInfo', JSON.stringify(data));
@@ -54,6 +54,7 @@ function ProfileScreen() {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
+  console.log('user token', userInfo.data.token);
   return (
     <Layout title="Profile">
       <Typography component="h1" variant="h1">

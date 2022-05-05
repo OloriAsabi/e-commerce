@@ -74,7 +74,7 @@ import {
           },
           {
             headers: {
-              authorization: `Bearer ${userInfo.token}`,
+              authorization: `Bearer ${userInfo.data.token}`,
             },
           }
         );
@@ -87,6 +87,7 @@ import {
         enqueueSnackbar(getError(err), { variant: 'error' });
       }
     };
+    console.log('user token', userInfo.data.token);
     return (
       <Layout title="Place Order">
         <CheckoutWizard activeStep={3}></CheckoutWizard>

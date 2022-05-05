@@ -51,7 +51,7 @@ import {
         try {
           dispatch({ type: 'FETCH_REQUEST' });
           const { data } = await axios.get(`/api/orders/history`, {
-            headers: { authorization: `Bearer ${userInfo.token}` },
+            headers: { authorization: `Bearer ${userInfo.data.token}` },
           });
   
           dispatch({ type: 'FETCH_SUCCESS', payload: data });
@@ -61,6 +61,7 @@ import {
       };
       fetchOrders();
     }, [router, userInfo]);
+    console.log('user token', userInfo.data.token);
     return (
       <Layout title="Order History">
         <Typography component="h1" variant="h1">

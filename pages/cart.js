@@ -123,7 +123,7 @@ import {
                                                     </Select>
                                              </TableCell>
                                              <TableCell align="right">
-                                                    <Typography>₦{item.price}</Typography>
+                                                    <Typography>${item.price}</Typography>
                                              </TableCell>
                                             <TableCell align="right">
                                                     <Button
@@ -146,7 +146,7 @@ import {
                                 <ListItem>
                                 <Typography variant="h5">
                                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                                    items) : ₦{' '}
+                                    items) : ${' '}
                                     {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                                 </Typography>
                                 </ListItem>

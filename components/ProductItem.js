@@ -29,7 +29,7 @@ export default function ProductItem({ product, addToCartHandler }) {
             </CardActionArea>
         </NextLink>
         <CardActions>
-        <Typography>₦{product.price}</Typography>
+        <Typography>${product.price}</Typography>
         <Button
           size="small"
           color="primary"
