@@ -182,7 +182,7 @@ export default function ProductScreen(props) {
 }
 
 
-export function getServerSideProps(context) {
+export function getInitialProps(context) {
     return {
       props: { slug: context.params.slug },
     };
