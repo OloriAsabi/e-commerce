@@ -26,7 +26,7 @@
     "next-connect": "^0.12.2",
     "notistack": "^2.0.4",
     "prestart": "npm-link-shared ./node_modules/<other package>/node_modules . react",
-    "react": "^17.0.0, path.resolve('./node_modules/react')",
+    "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-hook-form": "^7.30.0",
     "sanity": "^2.29.3"
