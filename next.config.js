@@ -3,6 +3,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
+    loader: 'imgix',
     domains: ['cdn.sanity.io'],
   },
 }
