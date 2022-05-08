@@ -162,6 +162,8 @@ import {
       });
       router.push('/cart');
     };
+
+    console.log('Categories: ',categories)
   
     return (
       <Layout title="search">

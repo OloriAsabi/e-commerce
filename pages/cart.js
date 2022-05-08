@@ -24,6 +24,8 @@ import {
   import Layout from '../components/Layout';
   import { Store } from '../utils/Store';
   import { useRouter } from 'next/router';
+import axios from 'axios';
+import classes from '../utils/classes';
 
   function CartScreen() {
     const router = useRouter();
@@ -35,8 +37,8 @@ import {
       const { enqueueSnackbar } = useSnackbar();
 
       const updateCartHandler = async(item, quantity) => {
-        // const { data } = await axios.get(`/api/products/${item._id}`);
-        if (item.countInStock < quantity) {
+        const { data } = await axios.get(`/api/products/${item._id}`);
+        if (data.countInStock < quantity) {
           enqueueSnackbar('Sorry. Product is out of stock', { variant: 'error' });
           return;
         }
@@ -155,11 +157,22 @@ import {
                                 onClick={() => {
                                     router.push('/shipping');
                                   }}
-                                  fullWidth
+                                  sx={classes.btn}
+                                  size="medium"
                                   color="primary"
                                   variant="contained"
                                 >
                                     Checkout
+                                </Button>
+                                <Button 
+                                onClick={() => {
+                                    router.push('/');
+                                  }}
+                                  size="small"
+                                  color="primary"
+                                  variant="contained"
+                                >
+                                 Continue Shopping
                                 </Button>
                                 </ListItem>
                             </List>

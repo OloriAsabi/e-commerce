@@ -4,7 +4,7 @@ const handler = nc();
 
 handler.get(async (req, res) => {
   const categories = ['Shirt', 'Pant', 'Headphones', 'Earphones'];
-  res.send(categories);
+  res.status(200).send(categories);
 });
 
 export default handler;

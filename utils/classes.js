@@ -63,6 +63,9 @@ const classes = {
         color: '#000000',
       },
     },
+    btn: {
+      margin: "10px"
+    }
   };
   
   export default classes;
