@@ -43,7 +43,7 @@ export default function LoginScreen() {
         jsCookie.set('userInfo', JSON.stringify(data));
         router.push('/');
       } catch (err) {
-        enqueueSnackbar(err.message, { variant: 'error' });
+        enqueueSnackbar('Invalid email or password', { variant: 'error' });
       }
     };
   return (
